@@ -1,8 +1,16 @@
-function calculateInterest() {
-    var principal = parseFloat(document.getElementById('principal').value);
-    var rate = parseFloat(document.getElementById('rate').value);
-    var time = parseFloat(document.getElementById('time').value);
-    var interest = (principal * rate * time) / 100;
-    var totalAmount = principal + interest;
-    document.getElementById('result').innerHTML = "Interest Amount: " + interest.toFixed(2) + "<br>Total Amount: " + totalAmount.toFixed(2);
+function calculateInterest(amount, percentage) {
+    let percentageValue = parseFloat(percentage.replace('%', ''));
+    let interestAmount = (amount * percentageValue) / 100;
+    return interestAmount;
+}
+function calculateAndDisplay() {
+    let amount = document.getElementById('amount').value;
+    let percentage = document.getElementById('percentage').value;
+    if (amount && percentage) {
+        amount = parseFloat(amount);
+        let result = calculateInterest(amount, percentage);
+        document.getElementById('result').textContent = `Interest Amount: R${result.toFixed(2)}`;
+    } else {
+        document.getElementById('result').textContent = 'Please enter valid inputs.';
+    }
 }
